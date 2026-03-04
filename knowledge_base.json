@@ -1,0 +1,178 @@
+[
+  {
+    "id": "techsoup-discounts",
+    "title": "TechSoup Product Donations & Discounts",
+    "category": "cost-savings",
+    "keywords": ["techsoup", "discounts", "donations", "free software", "nonprofit pricing"],
+    "budget_tier": "all",
+    "content": "TechSoup (techsoup.org) provides donated and discounted technology products to verified nonprofits. Key offerings: Microsoft 365 Business Premium at ~$5.50/user/month (vs $22 retail), Adobe Creative Cloud discounts, Zoom Pro at reduced rates, Intuit QuickBooks donations, and hardware discounts from Dell, Lenovo, and HP. Eligibility requires 501(c)(3) status and TechSoup validation. Apply at techsoup.org — validation takes 2-4 weeks. This is typically the single highest-ROI action any nonprofit can take for technology savings."
+  },
+  {
+    "id": "microsoft-365-nonprofit",
+    "title": "Microsoft 365 for Nonprofits",
+    "category": "productivity",
+    "keywords": ["microsoft", "office", "365", "email", "teams", "sharepoint", "collaboration", "m365"],
+    "budget_tier": "all",
+    "content": "Microsoft offers free and discounted Microsoft 365 plans for eligible nonprofits. Microsoft 365 Business Basic is FREE (up to 300 users) and includes Exchange email, Teams, SharePoint, and OneDrive with 1TB storage. Microsoft 365 Business Premium ($5.50/user/month via TechSoup) adds desktop Office apps, Intune device management, and advanced security features like Defender for Office 365. For organizations over 300 users, Enterprise E1 is free and E3/E5 are heavily discounted. Start at nonprofit.microsoft.com. This is the foundation of most nonprofit tech stacks."
+  },
+  {
+    "id": "google-workspace-nonprofit",
+    "title": "Google Workspace for Nonprofits",
+    "category": "productivity",
+    "keywords": ["google", "workspace", "gmail", "drive", "docs", "collaboration"],
+    "budget_tier": "all",
+    "content": "Google Workspace for Nonprofits provides free access to Gmail, Drive (100TB pooled storage), Docs, Sheets, Slides, Meet, and Chat for eligible organizations. Available through Google for Nonprofits (google.com/nonprofits). Includes custom email domains, shared drives, and Google Vault for archiving. Best for organizations that prefer cloud-native collaboration. Can coexist with Microsoft 365 — some orgs use both. Key advantage: familiar interface, strong real-time collaboration. Key limitation: less robust device management compared to Microsoft Intune."
+  },
+  {
+    "id": "crm-under-5m",
+    "title": "CRM Selection for Small Nonprofits (Under $5M Budget)",
+    "category": "crm",
+    "keywords": ["crm", "donor management", "fundraising", "small nonprofit", "bloomerang", "little green light"],
+    "budget_tier": "small",
+    "content": "For nonprofits under $5M budget, purpose-built donor CRMs are usually better than Salesforce. Top recommendations: Bloomerang ($119+/month, excellent donor retention focus, built-in email), Little Green Light ($45+/month, affordable and straightforward), Kindful (now part of Bloomerang), or Network for Good ($100+/month, includes fundraising pages). Key criteria: ease of use (staff won't use complex tools), built-in reporting, email integration, online giving integration, and import/export flexibility. Avoid Salesforce at this tier — the admin overhead and customization costs typically exceed the benefit for smaller teams."
+  },
+  {
+    "id": "crm-5m-plus",
+    "title": "CRM Selection for Mid-to-Large Nonprofits ($5M+ Budget)",
+    "category": "crm",
+    "keywords": ["crm", "salesforce", "npsp", "donor management", "fundraising", "large nonprofit"],
+    "budget_tier": "large",
+    "content": "For nonprofits with $5M+ budgets and dedicated IT/data staff, Salesforce Nonprofit Success Pack (NPSP) becomes viable. Salesforce offers 10 free licenses through the Power of Us program. NPSP provides donor management, program tracking, and extensive customization. Budget $15-50K for initial implementation with a certified consultant, plus ongoing admin costs. Alternatives at this tier: Microsoft Dynamics 365 (free for up to 10 users via nonprofit program), Blackbaud (Raiser's Edge NXT for large fundraising shops), or Virtuous (growing mid-market option). Key decision factor: do you have or can you hire a Salesforce admin? Without one, the investment often underperforms."
+  },
+  {
+    "id": "cybersecurity-basics",
+    "title": "Cybersecurity Essentials for Nonprofits",
+    "category": "security",
+    "keywords": ["security", "cybersecurity", "mfa", "phishing", "protection", "threats"],
+    "budget_tier": "all",
+    "content": "Every nonprofit needs these security foundations regardless of budget: (1) Multi-Factor Authentication (MFA) on ALL accounts — this single step prevents 99% of credential-based attacks. (2) Security awareness training — KnowBe4 offers free tools for small nonprofits, or use free phishing simulations. (3) Endpoint protection — Microsoft Defender is included with M365 Business Premium. (4) Email security — enable anti-phishing policies in M365 or Google Workspace. (5) Backup strategy — follow the 3-2-1 rule (3 copies, 2 media types, 1 offsite). (6) Incident response plan — document who to call and what to do when (not if) a breach occurs. The CIS Controls v8 Implementation Group 1 (IG1) provides a practical framework of 56 safeguards for organizations with limited IT resources."
+  },
+  {
+    "id": "cis-controls",
+    "title": "CIS Controls Framework for Nonprofits",
+    "category": "security",
+    "keywords": ["cis", "controls", "framework", "security", "compliance", "safeguards"],
+    "budget_tier": "all",
+    "content": "The CIS (Center for Internet Security) Controls v8 is the most practical cybersecurity framework for nonprofits. It organizes 153 safeguards into three Implementation Groups: IG1 (56 safeguards, 'essential cyber hygiene' — right for most nonprofits), IG2 (additional safeguards for orgs with moderate IT resources), and IG3 (full framework for large enterprises). Key IG1 controls: inventory of hardware/software assets, data protection, secure configuration, access control management, continuous vulnerability management, audit log management, email/web browser protection, malware defenses, data recovery, security awareness training, and incident response. Free resources at cisecurity.org. Many cyber insurance providers now reference CIS Controls in their requirements."
+  },
+  {
+    "id": "ai-adoption-compas",
+    "title": "AI Adoption for Nonprofits — The COMPAS Framework",
+    "category": "ai",
+    "keywords": ["ai", "artificial intelligence", "chatgpt", "claude", "adoption", "compas", "strategy"],
+    "budget_tier": "all",
+    "content": "Nonprofits should approach AI adoption thoughtfully using the COMPAS framework: Context (assess organizational readiness, culture, and current capabilities), Objective (define clear, mission-aligned goals for AI use — what problem are you actually solving?), Method (select appropriate tools — ChatGPT, Claude, Copilot, or domain-specific solutions), Performance (implement with proper training and change management), Assessment (measure what matters — did it actually improve outcomes?), and Sharing (document and share learnings with peers). Start with low-risk, high-value use cases: drafting communications, summarizing meeting notes, data analysis, grant writing assistance. Always establish an AI acceptable use policy before broad adoption. Key principle: AI should augment human capability, not replace human judgment, especially for decisions affecting vulnerable populations."
+  },
+  {
+    "id": "ai-policy",
+    "title": "Developing an AI Acceptable Use Policy",
+    "category": "ai",
+    "keywords": ["ai", "policy", "governance", "acceptable use", "guidelines", "responsible ai"],
+    "budget_tier": "all",
+    "content": "Every nonprofit using AI tools needs an acceptable use policy. Key components: (1) Approved tools — which AI platforms are sanctioned (e.g., ChatGPT Enterprise, Claude, Microsoft Copilot). (2) Data classification — what data can and cannot be entered into AI tools (never enter PII, client data, financial details, or donor information into consumer AI tools). (3) Output review — all AI-generated content must be reviewed by a human before external use. (4) Disclosure — when and how to disclose AI assistance (e.g., grant applications may require it). (5) Training requirements — who needs training and at what level. (6) Bias awareness — understand AI limitations, especially when serving diverse or vulnerable populations. (7) Vendor assessment — evaluate AI vendors for data privacy, security, and terms of service. Review and update the policy at least annually as the technology evolves rapidly."
+  },
+  {
+    "id": "website-platforms",
+    "title": "Website Platforms for Nonprofits",
+    "category": "web",
+    "keywords": ["website", "wordpress", "squarespace", "wix", "web design", "hosting"],
+    "budget_tier": "all",
+    "content": "Website platform recommendations by nonprofit capacity: For orgs without technical staff — Squarespace ($16-49/month, beautiful templates, easy to maintain, built-in donation pages) or Wix (free tier available, drag-and-drop). For orgs with some technical capacity — WordPress.org (free software, $5-30/month hosting, massive plugin ecosystem including GiveWP for donations, requires updates and maintenance). For large orgs with dev teams — headless CMS options like Contentful or Sanity paired with modern frameworks. Key nonprofit-specific needs: donation integration (GiveWP, Donorbox, Classy), event registration, volunteer signup forms, accessibility compliance (WCAG 2.1 AA), and SSL certificates. Google offers $10,000/month in free Google Ads credits through the Google Ad Grants program — apply at google.com/nonprofits."
+  },
+  {
+    "id": "data-backup",
+    "title": "Data Backup and Recovery for Nonprofits",
+    "category": "infrastructure",
+    "keywords": ["backup", "recovery", "disaster", "data loss", "ransomware", "business continuity"],
+    "budget_tier": "all",
+    "content": "Data backup is critical protection against ransomware, hardware failure, and human error. Follow the 3-2-1 rule: 3 copies of data, on 2 different media types, with 1 copy offsite/cloud. For M365 environments: Microsoft's native retention is limited — consider third-party backup solutions like Veeam Backup for M365, Acronis, or Backupify. For Google Workspace: Google Vault provides archiving but isn't true backup — consider Spanning or AFI Backup. Test your backups quarterly — a backup you've never tested is a backup you can't trust. Document your Recovery Time Objective (how fast you need systems back) and Recovery Point Objective (how much data loss is acceptable). Most nonprofits should target RTO of 24 hours and RPO of 4 hours for critical systems."
+  },
+  {
+    "id": "remote-work",
+    "title": "Remote and Hybrid Work Technology",
+    "category": "infrastructure",
+    "keywords": ["remote", "hybrid", "work from home", "vpn", "collaboration", "virtual"],
+    "budget_tier": "all",
+    "content": "Essential technology for remote/hybrid nonprofit teams: (1) Collaboration platform — Microsoft Teams (included in free M365 Nonprofit) or Google Meet/Chat. (2) Cloud file storage — SharePoint/OneDrive or Google Drive for shared documents. (3) Project management — Asana (free for up to 15 users), Monday.com (nonprofit discounts), or Trello (free tier). (4) VPN — if accessing on-premise systems, use a modern VPN like Cloudflare Zero Trust (free for up to 50 users). (5) Device management — Microsoft Intune (included in M365 Business Premium) for managing work devices. (6) Communication norms — document expectations for response times, meeting-free blocks, and async vs. sync communication. (7) Security — enforce MFA, use conditional access policies, and ensure personal devices meet minimum security requirements before accessing org data."
+  },
+  {
+    "id": "it-staffing",
+    "title": "IT Staffing and Support Models for Nonprofits",
+    "category": "operations",
+    "keywords": ["it", "staffing", "support", "msp", "vcio", "outsourcing", "managed services"],
+    "budget_tier": "all",
+    "content": "IT support models by budget tier: Under $2M budget — typically no dedicated IT staff. Use a Managed Service Provider (MSP) for break-fix support ($75-150/user/month) and consider a fractional/virtual CIO (vCIO) for strategic planning. $2-10M budget — consider a dedicated IT Coordinator or Manager, supplemented by MSP for specialized needs and vCIO for strategy. $10M+ budget — IT Director or team, potentially with a virtual CISO (vCISO) for security leadership. Key considerations when selecting an MSP: nonprofit experience matters (they understand budget constraints and mission-driven culture), look for proactive monitoring (not just break-fix), ensure they handle security basics (patching, MFA enforcement), and check references from similar-sized nonprofits. A vCIO relationship ($2-5K/month) provides strategic technology planning, vendor management, budgeting, and board-level reporting without the $150K+ salary of a full-time CIO."
+  },
+  {
+    "id": "grant-management",
+    "title": "Grant Management Technology",
+    "category": "operations",
+    "keywords": ["grants", "grant management", "tracking", "reporting", "compliance", "funding"],
+    "budget_tier": "all",
+    "content": "Grant management tools help track deadlines, budgets, deliverables, and reporting requirements. Options by tier: Simple (small portfolio, <10 active grants) — Airtable or Smartsheet with grant tracking templates (both offer nonprofit discounts). Mid-range — Submittable ($5K+/year, also handles program applications), Fluxx (configurable workflows). Enterprise — Salesforce with grants management add-ons, Blackbaud Grantmaking. Key features to prioritize: deadline alerts, budget tracking vs. actuals, document storage for compliance files, reporting templates, and integration with your accounting system. Many nonprofits outgrow spreadsheets around 15-20 active grants. Before purchasing specialized software, audit your current process — sometimes better use of existing tools (M365, Google Workspace) can bridge the gap."
+  },
+  {
+    "id": "cloud-migration",
+    "title": "Cloud Migration Strategy for Nonprofits",
+    "category": "infrastructure",
+    "keywords": ["cloud", "migration", "on-premise", "server", "infrastructure", "modernization"],
+    "budget_tier": "all",
+    "content": "Most nonprofits should be cloud-first. Key migration considerations: (1) Start with email — move to M365 or Google Workspace (often free for nonprofits). (2) File storage — migrate file servers to SharePoint/OneDrive or Google Drive. Plan folder structure before migrating; don't just lift-and-shift the mess. (3) Line-of-business apps — check if SaaS alternatives exist. Most case management, HR, and finance tools now offer cloud versions. (4) Legacy systems — some may require hybrid approaches or phased migration. (5) Timeline — budget 3-6 months for a full migration for a 50-person org. (6) Training — allocate 20% of migration budget for staff training (this is where most migrations fail). (7) Data cleanup — migration is the perfect time to archive old data and establish retention policies. AWS, Azure, and Google Cloud all offer nonprofit credit programs ($2-5K/year in free credits)."
+  },
+  {
+    "id": "accessibility",
+    "title": "Digital Accessibility for Nonprofits",
+    "category": "web",
+    "keywords": ["accessibility", "ada", "wcag", "inclusive", "disability", "compliance"],
+    "budget_tier": "all",
+    "content": "Digital accessibility isn't just ethical — it may be legally required. Key actions: (1) Website — aim for WCAG 2.1 Level AA compliance. Use automated scanners (WAVE, axe DevTools — both free) plus manual testing. (2) Documents — use proper heading structure in Word/Google Docs, add alt text to images, ensure color contrast. (3) Emails — use semantic HTML, adequate font sizes, alt text for images. (4) Events — provide captioning for virtual events (Zoom and Teams include auto-captioning), offer materials in advance. (5) Procurement — add accessibility requirements to vendor RFPs. Common violations: missing alt text on images, insufficient color contrast, keyboard navigation barriers, missing form labels, auto-playing media. Budget tip: building accessibility in from the start costs far less than retrofitting."
+  },
+  {
+    "id": "data-privacy",
+    "title": "Data Privacy and Compliance for Nonprofits",
+    "category": "security",
+    "keywords": ["privacy", "data", "compliance", "gdpr", "hipaa", "pii", "regulations"],
+    "budget_tier": "all",
+    "content": "Nonprofits handle sensitive data (donor PII, client records, employee information) and must take privacy seriously. Key areas: (1) Data inventory — know what personal data you collect, where it's stored, who can access it, and how long you keep it. (2) State privacy laws — many US states now have privacy laws (California CCPA, Virginia VCDPA, Colorado CPA, etc.). If you have constituents in these states, you may be subject to their requirements. (3) HIPAA — if you handle any health information (health-focused nonprofits, EAPs), HIPAA compliance is mandatory. (4) PCI DSS — if you process credit card donations, PCI compliance applies. (5) Data minimization — only collect what you need, only keep it as long as necessary. (6) Vendor agreements — ensure data processing agreements are in place with all vendors handling personal data. (7) Breach notification — have a plan for notifying affected individuals and regulators if a breach occurs."
+  },
+  {
+    "id": "project-management",
+    "title": "Project Management Tools for Nonprofits",
+    "category": "operations",
+    "keywords": ["project management", "asana", "monday", "trello", "tasks", "workflow"],
+    "budget_tier": "all",
+    "content": "Project management tools help nonprofit teams coordinate work, track deadlines, and maintain accountability. Recommendations by team size: Small teams (1-15) — Asana Free (up to 15 users, unlimited tasks/projects), Trello Free (Kanban-style, simple and visual), or Notion (free for small teams, combines docs and tasks). Growing teams (15-50) — Asana Premium ($10.99/user/month, nonprofits get 50% discount), Monday.com (nonprofit pricing available, strong automations), ClickUp (generous free tier). Large teams (50+) — Asana Business, Monday.com Enterprise, or Microsoft Planner (free with M365). Key success factor: tool adoption requires clear processes, not just software. Define how the tool fits into daily workflows, who updates what, and establish regular review cadences. The best tool is the one your team will actually use."
+  },
+  {
+    "id": "volunteer-management",
+    "title": "Volunteer Management Technology",
+    "category": "operations",
+    "keywords": ["volunteer", "management", "scheduling", "tracking", "hours", "engagement"],
+    "budget_tier": "all",
+    "content": "Volunteer management platforms help recruit, schedule, track hours, and communicate with volunteers. Options: Galaxy Digital ($3K+/year, comprehensive platform, strong for large volunteer programs), InitLive (event-based volunteer management, good for episodic volunteering), Better Impact (established platform, compliance-focused), VolunteerHub (integrates with Salesforce), or SignUpGenius (free tier, simple event-based signups). For smaller programs, a combination of Google Forms (signup), Google Calendar (scheduling), and a spreadsheet (hour tracking) may suffice. Key features to evaluate: self-service scheduling, automated reminders, hour tracking and reporting, background check integration, communication tools, and mobile app for volunteers. If using Salesforce, Volunteers for Salesforce (V4S) is a free managed package."
+  },
+  {
+    "id": "email-marketing",
+    "title": "Email Marketing and Communications",
+    "category": "communications",
+    "keywords": ["email", "marketing", "newsletter", "mailchimp", "constant contact", "communications"],
+    "budget_tier": "all",
+    "content": "Email remains the highest-ROI communication channel for nonprofits. Platform recommendations: Mailchimp (free up to 500 contacts, 15% nonprofit discount on paid plans, strong automations), Constant Contact (nonprofit discounts, event integration, good deliverability), Campaign Monitor (clean design tools, nonprofit pricing), or Brevo/Sendinblue (generous free tier, 300 emails/day). For orgs already using Salesforce: Pardot or Marketing Cloud for tight CRM integration. Key practices: segment your list (donors vs. volunteers vs. clients), personalize subject lines, optimize send times, maintain list hygiene (remove bounces and unengaged contacts), and always include an unsubscribe link (CAN-SPAM compliance). Benchmark: nonprofit average open rate is ~25%, click rate ~2.5%. If yours are significantly below this, review your content strategy and list quality."
+  },
+  {
+    "id": "budgeting-tech",
+    "title": "Technology Budgeting for Nonprofits",
+    "category": "operations",
+    "keywords": ["budget", "technology", "spending", "planning", "tcо", "investment"],
+    "budget_tier": "all",
+    "content": "Nonprofits should allocate 5-8% of operating budget to technology (NTEN benchmark). This includes: hardware (computers, networking), software/SaaS subscriptions, IT support (staff or MSP), security tools, and training. Budget planning tips: (1) Create a technology line item in your annual budget — don't bury it in 'general admin'. (2) Plan for hardware replacement every 4-5 years. (3) Include training budget (10-20% of any new tool purchase). (4) Account for true Total Cost of Ownership — a 'free' Salesforce instance still costs $15-50K to implement. (5) Build a technology reserve fund for emergencies (server failure, security incident). (6) Review all SaaS subscriptions quarterly — subscription creep is real. (7) Leverage nonprofit discounts aggressively — TechSoup, vendor nonprofit programs, and negotiation can save 50-90% on many tools."
+  },
+  {
+    "id": "change-management",
+    "title": "Technology Change Management",
+    "category": "operations",
+    "keywords": ["change management", "adoption", "training", "rollout", "implementation", "resistance"],
+    "budget_tier": "all",
+    "content": "Technology implementations fail more often due to poor change management than poor technology. Key practices: (1) Start with 'why' — connect the change to mission impact, not just efficiency. (2) Identify champions — find 2-3 enthusiastic staff members per department to be early adopters and peer trainers. (3) Communicate early and often — share the timeline, what's changing, what's NOT changing, and where to get help. (4) Training — offer multiple formats (live sessions, recorded videos, written guides). Expect to train 3 times more than you think necessary. (5) Pilot first — test with a small group before organization-wide rollout. (6) Quick wins — show value within the first 2 weeks. (7) Feedback loops — create clear channels for staff to report issues and suggestions. (8) Patience — full adoption typically takes 3-6 months. Don't declare victory or failure too early. Use the Elephant-Rider-Path framework: motivate the feeling (Elephant), provide clear direction (Rider), and make the right behavior easy (Path)."
+  }
+]
