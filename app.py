@@ -139,11 +139,40 @@ with st.sidebar:
         ],
     )
 
-    current_tech = st.text_area(
-        "Current Tech Stack",
-        placeholder="e.g., Gmail, Excel spreadsheets, QuickBooks",
-        height=80,
+    st.markdown(
+        "**Current Tech Stack**  \n"
+        '<span style="color: #64748b; font-size: 13px;">'
+        "Select what's relevant to your pain points — no need to list everything</span>",
+        unsafe_allow_html=True,
     )
+
+    tech_options = {
+        "Google Workspace": "Google Workspace (Gmail, Drive, Docs)",
+        "Microsoft 365": "Microsoft 365 (Outlook, Teams, SharePoint)",
+        "Salesforce": "Salesforce / Salesforce NPSP",
+        "QuickBooks": "QuickBooks / Accounting software",
+        "Spreadsheets": "Spreadsheets for tracking (Excel, Google Sheets)",
+        "Mailchimp": "Mailchimp / Email marketing",
+        "Zoom": "Zoom / Video conferencing",
+        "Slack": "Slack / Team messaging",
+        "WordPress": "WordPress / Website CMS",
+        "Paper/manual": "Paper forms / Manual processes",
+    }
+
+    selected_tech = []
+    cols = st.columns(2)
+    for i, (key, label) in enumerate(tech_options.items()):
+        with cols[i % 2]:
+            if st.checkbox(label, key=f"tech_{key}"):
+                selected_tech.append(key)
+
+    other_tech = st.text_input(
+        "Other tools (optional)",
+        placeholder="e.g., Bloomerang, Asana, custom database",
+    )
+    current_tech = ", ".join(selected_tech)
+    if other_tech.strip():
+        current_tech = f"{current_tech}, {other_tech.strip()}" if current_tech else other_tech.strip()
 
     pain_points = st.text_area(
         "Top Technology Pain Points",
