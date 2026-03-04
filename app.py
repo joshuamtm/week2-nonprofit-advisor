@@ -321,10 +321,33 @@ if not st.session_state.advising_started:
             point for technology decisions, not replace professional consulting. Always validate
             recommendations with your team before making major changes.
 
+            ---
+
+            ### Privacy & Data
+
+            **What's safe to enter:**
+            - Your organization name, budget range, staff count, and cause area
+            - General technology pain points (e.g., "we need a CRM" or "our security is weak")
+            - Questions about tools, platforms, and best practices
+
+            **What you should NOT enter:**
+            - Passwords, API keys, or login credentials
+            - Personally identifiable information (names, SSNs, donor lists, client records)
+            - Financial details (bank accounts, credit card numbers, specific grant amounts)
+            - Protected health information (PHI) or sensitive client data
+
+            **What happens to your data:**
+            - **Nothing is saved.** When you close or refresh the page, your entire session is erased. We do not store your conversation, your org profile, or any information you enter.
+            - Your questions are sent to Anthropic's Claude AI to generate responses. Anthropic's [usage policy](https://www.anthropic.com/policies) applies — conversations through the API are not used to train their models.
+            - No analytics, no tracking, no cookies beyond what Streamlit requires to run.
+
+            **Bottom line:** You can safely use your real organization name and general details. Just don't paste in anything you'd be uncomfortable sharing in a public setting.
+
+            ---
+
             **We'd love your feedback!** Try it out and let us know what's helpful and what could
             be better: [joshua@mtm.now](mailto:joshua@mtm.now)
 
-            ---
             *Built by [Meet the Moment](https://mtm.now) — helping nonprofits harness technology to amplify their impact.*
             """
         )
