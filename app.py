@@ -11,6 +11,7 @@ import json
 import streamlit as st
 from agent import run_agent, extract_memory, memory
 from export import generate_docx
+from session_io import serialize_session, parse_session
 
 # --- Page Config ---
 st.set_page_config(
@@ -281,6 +282,19 @@ with st.sidebar:
                 use_container_width=True,
             )
 
+            # Save session for resuming later
+            st.markdown("**Resume Later**")
+            session_md = serialize_session(profile, st.session_state.messages)
+
+            st.download_button(
+                label="Save Session (.md)",
+                data=session_md.encode("utf-8"),
+                file_name=f"mtm-session-{org_slug}.md",
+                mime="text/markdown",
+                use_container_width=True,
+                help="Download this file to resume your session later. Upload it on the home page to continue.",
+            )
+
         st.markdown("---")
         if st.button("New Organization", use_container_width=True):
             st.session_state.advising_started = False
@@ -306,6 +320,48 @@ st.markdown(
 st.markdown("---")
 
 if not st.session_state.advising_started:
+    # Resume session option
+    st.markdown(
+        """
+        <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px;
+                    padding: 16px; margin-bottom: 24px;">
+            <p style="font-weight: 600; color: #0e7490; margin: 0 0 4px 0;">
+                Returning? Resume a previous session
+            </p>
+            <p style="color: #64748b; font-size: 13px; margin: 0;">
+                Upload a saved session file (.md) to pick up where you left off.
+                Your organization profile and conversation history will be restored.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    uploaded_file = st.file_uploader(
+        "Upload a saved session file",
+        type=["md"],
+        label_visibility="collapsed",
+    )
+
+    if uploaded_file is not None:
+        try:
+            markdown_text = uploaded_file.read().decode("utf-8")
+            restored_profile, restored_messages = parse_session(markdown_text)
+
+            if restored_profile.get("org_name"):
+                st.session_state.org_profile = restored_profile
+                st.session_state.messages = restored_messages
+                st.session_state.advising_started = True
+                st.session_state.tool_logs = {}
+                st.session_state["_just_resumed"] = True
+                st.rerun()
+            else:
+                st.error("Could not find an organization profile in this file. Please check the file format.")
+        except Exception:
+            st.error("Could not parse this file. Please upload a valid saved session (.md) file.")
+
+    st.markdown("")
+
     # Landing state — two audience tabs
     tab_users, tab_bootcamp = st.tabs(["For Nonprofit Staff", "For Bootcamp Reviewers"])
 
@@ -329,7 +385,8 @@ if not st.session_state.advising_started:
             - It remembers your full conversation during a session, so you can ask follow-up questions and build on earlier answers
             - Every answer shows what sources were used, so you can see the reasoning
             - It recommends nonprofit-specific discounts and programs (TechSoup, Microsoft Nonprofit, Google for Nonprofits)
-            - **Download your advice** as a Word document before you leave — once you close the page, your session won't be saved
+            - **Download your advice** as a Word document, or **save your session** as a markdown file to resume later
+            - Upload a saved session file anytime to pick up where you left off — no account needed
 
             **This is an AI advisor, not a human.** It's designed to give you a helpful starting
             point for technology decisions, not replace professional consulting. Always validate
@@ -351,7 +408,8 @@ if not st.session_state.advising_started:
             - Protected health information (PHI) or sensitive client data
 
             **What happens to your data:**
-            - **Nothing is saved.** When you close or refresh the page, your entire session is erased. We do not store your conversation, your org profile, or any information you enter.
+            - **Nothing is saved on our servers.** When you close or refresh the page, your session is erased from memory. We do not store your conversation, your org profile, or any information you enter.
+            - **You control your data.** You can optionally download a session file (.md) to your own device to resume later. This file stays on your computer — we never see it.
             - Your questions are sent to Anthropic's Claude AI to generate responses. Anthropic's [usage policy](https://www.anthropic.com/policies) applies — conversations through the API are not used to train their models.
             - No analytics, no tracking, no cookies beyond what Streamlit requires to run.
 
@@ -381,7 +439,7 @@ if not st.session_state.advising_started:
             | Pillar | Implementation |
             |--------|---------------|
             | **Context** | Sidebar org profile injected into every system prompt — change the budget tier and the same question gives different advice |
-            | **Memory** | JSON-backed persistence keyed by org name — maintains full conversation context within a session; on local installs, persists across sessions via `data/memory.json` |
+            | **Memory** | JSON-backed persistence keyed by org name — maintains full conversation context within a session; users can save/resume sessions via downloadable markdown files (stateless, privacy-preserving) |
             | **Tools** | Two Anthropic `tool_use` tools: `search_knowledge_base` (22 curated nonprofit tech entries, budget-filtered) and `fetch_wikipedia_summary` (REST API with search fallback) |
 
             **Architecture:**
@@ -389,6 +447,7 @@ if not st.session_state.advising_started:
             - `tools.py` — Tool definitions + execution functions
             - `memory.py` — `MemoryManager` class with JSON persistence
             - `knowledge_base.json` — 22 curated entries covering CRM, security, AI, cloud, etc.
+            - `session_io.py` — Markdown-based session save/resume (stateless persistence)
             - `app.py` — Streamlit UI with sidebar profile, chat, pillars dashboard, tool transparency
 
             **Key demo moments:**
@@ -397,6 +456,7 @@ if not st.session_state.advising_started:
             3. Ask "What is NIST?" → triggers `fetch_wikipedia_summary`
             4. Close browser, reopen, same org name → memory persists
             5. Change budget tier → same question gives different advice
+            6. Save session → download .md → refresh page → upload .md → conversation resumes
 
             **Stack:** Python, Anthropic SDK (Claude Sonnet + Haiku), Streamlit, Wikipedia REST API
             """
@@ -427,7 +487,7 @@ else:
                                 st.markdown(f"*Result: {t['result']}*")
                             st.markdown("---")
 
-    # Auto-generate greeting on first load
+    # Auto-generate greeting on first load (skip if resuming with existing messages)
     if not st.session_state.messages:
         with st.chat_message("assistant"):
             with st.spinner("Preparing your personalized advisor..."):
@@ -454,6 +514,14 @@ else:
         msg_idx = len(st.session_state.messages) - 1
         if tool_calls:
             st.session_state.tool_logs[msg_idx] = tool_calls
+    elif st.session_state.get("_just_resumed"):
+        # Show a resume notice once
+        del st.session_state["_just_resumed"]
+        st.info(
+            f"Session resumed for **{org_name}** with "
+            f"{len(st.session_state.messages)} previous messages. "
+            f"Continue the conversation below."
+        )
 
     # Chat input
     if user_input := st.chat_input("Ask about technology for your nonprofit..."):

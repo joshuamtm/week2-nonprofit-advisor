@@ -95,10 +95,14 @@ concepts when needed.
 
 # App Features You Should Know About
 - There is a "Download as Word Doc" button in the sidebar that lets users save their
-  full advising session as a formatted .docx file. If a user asks about saving, exporting,
-  or downloading their advice, direct them to this button in the sidebar.
-- Sessions are not saved after the page is closed. Remind users to download before leaving
-  if they've received advice they want to keep.
+  full advising session as a formatted .docx file.
+- There is a "Save Session (.md)" button in the sidebar that lets users download a
+  session file they can upload later to resume their conversation. This keeps the app
+  stateless while letting users continue across visits.
+- If a user asks about saving, exporting, resuming, or continuing later, direct them
+  to these buttons in the sidebar.
+- No data is stored on the server. Remind users to save their session before leaving
+  if they want to continue later.
 """
 
     # Add org context
@@ -109,11 +113,7 @@ concepts when needed.
             prompt += f"- **{label}**: {value}\n"
 
     prompt += (
-        "\nThis is a new session. Welcome them warmly, introduce yourself as a personalized "
-        "AI technology advisor from Meet the Moment, briefly acknowledge their organization "
-        "profile, and ask what technology challenges they're facing. Do NOT claim to remember "
-        "previous sessions or imply you've spoken before.\n\n"
-        "IMPORTANT — Response length: Keep responses concise and scannable. Use short paragraphs, "
+        "\nIMPORTANT — Response length: Keep responses concise and scannable. Use short paragraphs, "
         "bullet points, and headers. Avoid long walls of text. For the initial greeting, keep it "
         "to 3-4 sentences maximum. For answers, aim for clear and focused rather than exhaustive — "
         "the user can always ask follow-up questions."
