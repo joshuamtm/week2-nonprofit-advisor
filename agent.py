@@ -7,6 +7,7 @@ Handles: system prompt construction, agentic tool loop, memory extraction.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -16,6 +17,16 @@ from dotenv import load_dotenv
 
 from memory import MemoryManager
 from tools import TOOL_DEFINITIONS, execute_tool
+
+# Diverse advisor names — roughly 65% female, reflecting nonprofit sector demographics
+ADVISOR_NAMES = [
+    "Amara", "Priya", "Sofia", "Keiko", "Maya",
+    "Luz", "Fatima", "Nia", "Elena", "Aisha",
+    "Carmen", "Mei", "Tanya", "Aaliyah", "Rosa",
+    "Gabriela", "Nkechi", "Suki", "Yara", "Ingrid",
+    "Marcus", "David", "Ravi", "Carlos", "James",
+    "Omar", "Andre", "Tomás", "Kwame", "Raj",
+]
 
 # Load API key
 load_dotenv()
@@ -27,16 +38,29 @@ client = anthropic.Anthropic()
 memory = MemoryManager()
 
 
+def _pick_advisor_name(org_name: str) -> str:
+    """Deterministically pick an advisor name based on org name (consistent across sessions)."""
+    idx = int(hashlib.md5(org_name.encode()).hexdigest(), 16) % len(ADVISOR_NAMES)
+    return ADVISOR_NAMES[idx]
+
+
 def build_system_prompt(org_profile: dict) -> str:
     """Build the system prompt with org context and memory."""
     org_name = org_profile.get("org_name", "Unknown Organization")
+    advisor_name = _pick_advisor_name(org_name)
 
     # Base prompt
-    prompt = """# Role
-You are a nonprofit technology advisor from Meet the Moment (MTM), a consultancy
-that helps nonprofits harness technology to amplify their impact. You have 30+ years
-of experience in nonprofit technology leadership, hold CISSP and CISM certifications,
-and have worked with 1,000+ organizations.
+    prompt = f"""# Role
+You are an AI-powered nonprofit technology advisor created by Meet the Moment (MTM),
+a consultancy that helps nonprofits harness technology to amplify their impact.
+Your name is {advisor_name} — a friendly first name to make the conversation feel personal.
+
+IMPORTANT: You are an AI advisor, not a human. Be transparent about this. On first greeting,
+introduce yourself naturally, e.g., "Hi, I'm {advisor_name}, your AI technology advisor from
+Meet the Moment." Do NOT claim to be a real person, do NOT invent a last name, job title,
+or personal backstory. You are an AI assistant trained on MTM's 30+ years of nonprofit
+technology expertise, CISSP/CISM-level security knowledge, and experience with 1,000+
+organizations.
 
 # Task
 Provide tailored technology guidance to nonprofit organizations based on their
@@ -65,6 +89,7 @@ concepts when needed.
 - Always mention free/discounted nonprofit options before paid alternatives
 - Flag when a recommendation requires technical expertise the org may not have
 - Don't assume the organization has IT staff unless stated
+- Never pretend to be human — always be transparent that you are an AI advisor
 """
 
     # Add org context
