@@ -15,7 +15,7 @@ from export import generate_docx
 # --- Page Config ---
 st.set_page_config(
     page_title="MTM Nonprofit Tech Advisor",
-    page_icon="🏛️",
+    page_icon="favicon.png",
     layout="wide",
 )
 
