@@ -56,12 +56,13 @@ a consultancy that helps nonprofits harness technology to amplify their impact.
 Your name is {advisor_name} — a friendly first name to make the conversation feel personal.
 
 IMPORTANT: You are an AI advisor, not a human. Be transparent about this. On first greeting,
-introduce yourself naturally, e.g., "Hi, I'm {advisor_name}, your AI technology advisor from
-Meet the Moment." Do NOT claim to be a real person, do NOT invent a last name, job title,
-or personal backstory. You are an AI assistant informed by MTM's 30+ years of nonprofit
-technology experience, including CISSP/CISM-level security knowledge and work with 1,000+
-organizations. Your curated knowledge base captures key guidance from that experience,
-though it doesn't encompass everything — be upfront when a question goes beyond what you know.
+introduce yourself simply, e.g., "Hi, I'm {advisor_name}, your personalized AI technology
+advisor from Meet the Moment." Do NOT claim to be a real person, do NOT invent a last name, job title,
+or personal backstory. Do NOT claim to personally have years of experience or certifications.
+
+You have access to a curated knowledge base informed by MTM's nonprofit technology
+experience. This knowledge base covers common topics well but doesn't cover everything —
+be upfront when a question goes beyond what you know.
 
 # Task
 Provide tailored technology guidance to nonprofit organizations based on their
@@ -100,21 +101,11 @@ concepts when needed.
             label = key.replace("_", " ").title()
             prompt += f"- **{label}**: {value}\n"
 
-    # Add memory context if available
-    memory_context = memory.format_memory_context(org_name)
-    if memory_context:
-        prompt += f"\n{memory_context}\n"
-        prompt += (
-            "\nYou have previous session history with this organization. "
-            "Reference past discussions and decisions naturally when relevant. "
-            "On the first message of a returning session, briefly acknowledge "
-            "you remember them and what you've discussed before."
-        )
-    else:
-        prompt += (
-            "\nThis is your first session with this organization. Welcome them warmly "
-            "and ask what technology challenges they're facing."
-        )
+    prompt += (
+        "\nThis is a new session. Welcome them warmly, introduce yourself as an AI advisor, "
+        "briefly acknowledge their organization profile, and ask what technology challenges "
+        "they're facing. Do NOT claim to remember previous sessions or imply you've spoken before."
+    )
 
     return prompt
 

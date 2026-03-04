@@ -211,9 +211,6 @@ with st.sidebar:
         st.session_state.messages = []
         st.session_state.tool_logs = {}
 
-        # Initialize memory
-        memory.init_org(org_name.strip(), profile)
-
         st.rerun()
     elif start_button:
         st.warning("Please enter an organization name.")
@@ -420,9 +417,9 @@ else:
                         "role": "user",
                         "content": (
                             "This is the start of a new advising session. "
-                            "Please introduce yourself and acknowledge my organization's profile. "
-                            "If you have memory of previous sessions, reference what we've discussed. "
-                            "Then ask what technology challenges I'd like to focus on today."
+                            "Please introduce yourself briefly as a personalized AI technology advisor "
+                            "from Meet the Moment, acknowledge my organization's profile, "
+                            "and ask what technology challenges I'd like to focus on today."
                         ),
                     }
                 ]
