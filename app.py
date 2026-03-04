@@ -423,7 +423,9 @@ else:
                             "This is the start of a new advising session. "
                             "Please introduce yourself briefly as a personalized AI technology advisor "
                             "from Meet the Moment, acknowledge my organization's profile, "
-                            "and ask what technology challenges I'd like to focus on today."
+                            "and then suggest 3-5 specific technology challenges I might want to "
+                            "tackle today based on my profile and pain points. Present them as a "
+                            "numbered list I can pick from, while noting I can also ask about anything else."
                         ),
                     }
                 ]
