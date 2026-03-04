@@ -97,8 +97,6 @@ if "tool_logs" not in st.session_state:
 
 # --- Sidebar: Org Profile ---
 with st.sidebar:
-    st.image("mtm-logo.png", width=160)
-
     st.markdown(
         """
         <div style="background: linear-gradient(135deg, #0891b2, #0e7490, #155e75);
@@ -276,7 +274,7 @@ with st.sidebar:
             st.rerun()
 
 # --- Main Area ---
-st.image("mtm-logo.png", width=180)
+st.image("mtm-logo.png", width=280)
 st.markdown(
     """
     <div style="margin-top: -8px; margin-bottom: 24px;">
@@ -301,7 +299,7 @@ if not st.session_state.advising_started:
             ### Your AI Technology Advisor
 
             Get **free, tailored technology guidance** for your nonprofit — powered by
-            AI and built on 30+ years of nonprofit technology expertise.
+            AI and informed by Meet the Moment's 30+ years of nonprofit technology experience.
 
             **How it works:**
             1. Fill in your organization's profile in the sidebar (name, budget, staff, pain points)
