@@ -184,17 +184,32 @@ with st.sidebar:
         height=80,
     )
 
-    it_capacity = st.selectbox(
-        "IT Capacity",
-        [
-            "",
-            "No dedicated IT staff",
-            "One IT generalist",
-            "Small IT team (2-5)",
-            "Full IT department (5+)",
-            "Using an MSP/outsourced IT",
-        ],
+    st.markdown(
+        "**IT Support**  \n"
+        '<span style="color: #64748b; font-size: 13px;">'
+        "Select all that apply</span>",
+        unsafe_allow_html=True,
     )
+
+    it_options = {
+        "No dedicated IT staff": "No dedicated IT staff",
+        "IT generalist": "Internal IT generalist",
+        "IT team": "Internal IT team (2+)",
+        "MSP": "Outsourced IT / MSP",
+        "Fractional CIO/CTO": "Fractional / Virtual CIO or CTO",
+        "Fractional CISO": "Fractional / Virtual CISO",
+        "Fractional CAIO": "Fractional / Virtual Chief AI Officer",
+        "IT-savvy staff": "Non-IT staff handle tech informally",
+    }
+
+    selected_it = []
+    it_cols = st.columns(2)
+    for i, (key, label) in enumerate(it_options.items()):
+        with it_cols[i % 2]:
+            if st.checkbox(label, key=f"it_{key}"):
+                selected_it.append(key)
+
+    it_capacity = ", ".join(selected_it) if selected_it else ""
 
     st.markdown("---")
 
