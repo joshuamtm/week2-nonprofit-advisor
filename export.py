@@ -1,0 +1,167 @@
+"""
+Export module — Generate Word document from advising session.
+Week 2, Lonely Octopus AI Agent Bootcamp
+"""
+
+from __future__ import annotations
+
+import io
+import re
+from datetime import datetime
+
+from docx import Document
+from docx.shared import Inches, Pt, RGBColor
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+
+
+# MTM brand colors
+MTM_TEAL = RGBColor(0x0E, 0x74, 0x90)
+MTM_DARK = RGBColor(0x1C, 0x48, 0x7B)
+MTM_LIGHT = RGBColor(0x85, 0xAB, 0xBD)
+
+
+def _add_heading(doc: Document, text: str, level: int = 1):
+    """Add a heading with MTM teal color."""
+    heading = doc.add_heading(text, level=level)
+    for run in heading.runs:
+        run.font.color.rgb = MTM_TEAL
+
+
+def _parse_markdown_to_runs(paragraph, text: str):
+    """Convert basic markdown bold/italic to Word runs."""
+    # Split on bold markers
+    parts = re.split(r"(\*\*.*?\*\*)", text)
+    for part in parts:
+        if part.startswith("**") and part.endswith("**"):
+            run = paragraph.add_run(part[2:-2])
+            run.bold = True
+        else:
+            # Handle italic within non-bold parts
+            italic_parts = re.split(r"(\*.*?\*)", part)
+            for ip in italic_parts:
+                if ip.startswith("*") and ip.endswith("*") and not ip.startswith("**"):
+                    run = paragraph.add_run(ip[1:-1])
+                    run.italic = True
+                else:
+                    paragraph.add_run(ip)
+
+
+def generate_docx(messages: list[dict], org_profile: dict) -> bytes:
+    """Generate a Word document from the advising session."""
+    doc = Document()
+
+    # Set default font
+    style = doc.styles["Normal"]
+    font = style.font
+    font.name = "Calibri"
+    font.size = Pt(11)
+    font.color.rgb = MTM_DARK
+
+    # --- Title ---
+    title = doc.add_heading("Technology Advice", level=0)
+    for run in title.runs:
+        run.font.color.rgb = MTM_TEAL
+
+    org_name = org_profile.get("org_name", "Your Organization")
+    subtitle = doc.add_paragraph()
+    run = subtitle.add_run(f"Prepared for {org_name}")
+    run.font.size = Pt(14)
+    run.font.color.rgb = MTM_DARK
+
+    date_para = doc.add_paragraph()
+    run = date_para.add_run(datetime.now().strftime("%B %d, %Y"))
+    run.font.size = Pt(11)
+    run.font.color.rgb = MTM_LIGHT
+    run.italic = True
+
+    doc.add_paragraph()  # spacer
+
+    # --- Org Profile ---
+    _add_heading(doc, "Organization Profile", level=1)
+
+    profile_labels = {
+        "org_name": "Organization",
+        "budget_tier": "Annual Budget",
+        "staff_count": "Staff Count",
+        "cause_area": "Cause Area",
+        "current_tech": "Current Technology",
+        "pain_points": "Pain Points",
+        "it_capacity": "IT Capacity",
+    }
+
+    for key, label in profile_labels.items():
+        value = org_profile.get(key, "")
+        if value:
+            p = doc.add_paragraph()
+            run = p.add_run(f"{label}: ")
+            run.bold = True
+            p.add_run(str(value))
+
+    doc.add_paragraph()  # spacer
+
+    # --- Conversation ---
+    _add_heading(doc, "Advising Session", level=1)
+
+    question_num = 0
+    for msg in messages:
+        if msg["role"] == "user":
+            question_num += 1
+            _add_heading(doc, f"Question {question_num}", level=2)
+            doc.add_paragraph(msg["content"])
+
+        elif msg["role"] == "assistant":
+            _add_heading(doc, "Advisor Response", level=3)
+
+            # Process content line by line for basic formatting
+            content = msg["content"]
+            for line in content.split("\n"):
+                stripped = line.strip()
+
+                if not stripped:
+                    continue
+
+                # Markdown headers → Word headings
+                if stripped.startswith("### "):
+                    _add_heading(doc, stripped[4:], level=3)
+                elif stripped.startswith("## "):
+                    _add_heading(doc, stripped[3:], level=2)
+                elif stripped.startswith("# "):
+                    _add_heading(doc, stripped[2:], level=1)
+
+                # Bullet points
+                elif stripped.startswith("- ") or stripped.startswith("* "):
+                    p = doc.add_paragraph(style="List Bullet")
+                    _parse_markdown_to_runs(p, stripped[2:])
+
+                # Numbered lists
+                elif re.match(r"^\d+\.\s", stripped):
+                    p = doc.add_paragraph(style="List Number")
+                    text = re.sub(r"^\d+\.\s", "", stripped)
+                    _parse_markdown_to_runs(p, text)
+
+                # Regular paragraph
+                else:
+                    p = doc.add_paragraph()
+                    _parse_markdown_to_runs(p, stripped)
+
+            doc.add_paragraph()  # spacer between responses
+
+    # --- Footer ---
+    doc.add_paragraph()
+    doc.add_paragraph("_" * 60)
+
+    footer = doc.add_paragraph()
+    footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = footer.add_run(
+        "This advice was generated by an AI advisor from Meet the Moment (mtm.now).\n"
+        "For professional consulting, contact joshua@mtm.now."
+    )
+    run.font.size = Pt(9)
+    run.font.color.rgb = MTM_LIGHT
+    run.italic = True
+
+    # Write to bytes
+    buffer = io.BytesIO()
+    doc.save(buffer)
+    buffer.seek(0)
+    return buffer.getvalue()
