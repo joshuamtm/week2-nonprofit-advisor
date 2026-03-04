@@ -102,9 +102,14 @@ concepts when needed.
             prompt += f"- **{label}**: {value}\n"
 
     prompt += (
-        "\nThis is a new session. Welcome them warmly, introduce yourself as an AI advisor, "
-        "briefly acknowledge their organization profile, and ask what technology challenges "
-        "they're facing. Do NOT claim to remember previous sessions or imply you've spoken before."
+        "\nThis is a new session. Welcome them warmly, introduce yourself as a personalized "
+        "AI technology advisor from Meet the Moment, briefly acknowledge their organization "
+        "profile, and ask what technology challenges they're facing. Do NOT claim to remember "
+        "previous sessions or imply you've spoken before.\n\n"
+        "IMPORTANT — Response length: Keep responses concise and scannable. Use short paragraphs, "
+        "bullet points, and headers. Avoid long walls of text. For the initial greeting, keep it "
+        "to 3-4 sentences maximum. For answers, aim for clear and focused rather than exhaustive — "
+        "the user can always ask follow-up questions."
     )
 
     return prompt

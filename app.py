@@ -156,6 +156,10 @@ with st.sidebar:
         "Zoom": "Zoom / Video conferencing",
         "Slack": "Slack / Team messaging",
         "WordPress": "WordPress / Website CMS",
+        "ChatGPT": "ChatGPT (OpenAI)",
+        "Microsoft Copilot": "Microsoft Copilot",
+        "Google Gemini": "Google Gemini",
+        "Claude": "Claude (Anthropic)",
         "Paper/manual": "Paper forms / Manual processes",
     }
 
