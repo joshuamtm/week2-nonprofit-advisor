@@ -272,23 +272,80 @@ st.markdown(
 st.markdown("---")
 
 if not st.session_state.advising_started:
-    # Landing state
-    st.markdown(
-        """
-        ### Welcome
+    # Landing state — two audience tabs
+    tab_users, tab_bootcamp = st.tabs(["For Nonprofit Staff", "For Bootcamp Reviewers"])
 
-        This advisor provides tailored technology guidance for nonprofit organizations.
-        It demonstrates the **three pillars** of context-aware AI agents:
+    with tab_users:
+        st.markdown(
+            """
+            ### Your AI Technology Advisor
 
-        | Pillar | What It Does |
-        |--------|-------------|
-        | **Context** | Your org profile shapes every recommendation |
-        | **Memory** | Remembers past sessions — come back anytime |
-        | **Tools** | Searches a curated knowledge base + Wikipedia |
+            Get **free, tailored technology guidance** for your nonprofit — powered by
+            AI and built on 30+ years of nonprofit technology expertise.
 
-        **Get started** by filling in your organization profile in the sidebar and clicking **Start Advising**.
-        """
-    )
+            **How it works:**
+            1. Fill in your organization's profile in the sidebar (name, budget, staff, pain points)
+            2. Click **Start Advising** to meet your AI advisor
+            3. Ask any technology question — CRM selection, cybersecurity, cloud migration,
+               AI adoption, budgeting, and more
+            4. Get recommendations calibrated to your budget, team size, and technical capacity
+
+            **What makes it useful:**
+            - Advice is personalized to *your* organization, not generic
+            - It remembers your previous sessions — come back anytime and pick up where you left off
+            - Every answer shows what sources were used, so you can see the reasoning
+            - It recommends nonprofit-specific discounts and programs (TechSoup, Microsoft Nonprofit, Google for Nonprofits)
+
+            **This is an AI advisor, not a human.** It's designed to give you a helpful starting
+            point for technology decisions, not replace professional consulting. Always validate
+            recommendations with your team before making major changes.
+
+            **We'd love your feedback!** Try it out and let us know what's helpful and what could
+            be better: [joshua@mtm.now](mailto:joshua@mtm.now)
+
+            ---
+            *Built by [Meet the Moment](https://mtm.now) — helping nonprofits harness technology to amplify their impact.*
+            """
+        )
+
+    with tab_bootcamp:
+        st.markdown(
+            """
+            ### Week 2 Assignment — Context, Memory, and Tools
+
+            This is a **context-aware nonprofit technology advisor** built for Week 2 of
+            The Lonely Octopus AI Agent Bootcamp. It evolves the Week 1 single-turn Task
+            Generator into a multi-turn agent with tool use, persistent memory, and
+            organization-aware context.
+
+            **The Three Pillars:**
+
+            | Pillar | Implementation |
+            |--------|---------------|
+            | **Context** | Sidebar org profile injected into every system prompt — change the budget tier and the same question gives different advice |
+            | **Memory** | JSON-backed persistence keyed by org name — close the browser, come back, enter the same org, and the agent remembers past sessions, decisions, and preferences |
+            | **Tools** | Two Anthropic `tool_use` tools: `search_knowledge_base` (22 curated nonprofit tech entries, budget-filtered) and `fetch_wikipedia_summary` (REST API with search fallback) |
+
+            **Architecture:**
+            - `agent.py` — Agentic tool-use loop (call Claude → execute tools → loop until `end_turn`)
+            - `tools.py` — Tool definitions + execution functions
+            - `memory.py` — `MemoryManager` class with JSON persistence
+            - `knowledge_base.json` — 22 curated entries covering CRM, security, AI, cloud, etc.
+            - `app.py` — Streamlit UI with sidebar profile, chat, pillars dashboard, tool transparency
+
+            **Key demo moments:**
+            1. Fill in an org profile → agent greets with context-aware intro
+            2. Ask "What CRM should we use?" → triggers `search_knowledge_base`
+            3. Ask "What is NIST?" → triggers `fetch_wikipedia_summary`
+            4. Close browser, reopen, same org name → memory persists
+            5. Change budget tier → same question gives different advice
+
+            **Stack:** Python, Anthropic SDK (Claude Sonnet + Haiku), Streamlit, Wikipedia REST API
+            """
+        )
+
+    st.markdown("")
+    st.markdown("**Get started** by filling in your organization profile in the sidebar and clicking **Start Advising**.")
 else:
     profile = st.session_state.org_profile
     org_name = profile["org_name"]
