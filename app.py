@@ -126,6 +126,7 @@ with st.sidebar:
         "Cause Area",
         [
             "",
+            "Animal Welfare",
             "Arts & Culture",
             "Community Services",
             "Education",
@@ -133,6 +134,7 @@ with st.sidebar:
             "Health & Human Services",
             "Housing & Homelessness",
             "International Development",
+            "Religious / Faith-Based",
             "Social Justice & Advocacy",
             "Workforce Development",
             "Youth Development",
